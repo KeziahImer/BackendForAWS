@@ -1,8 +1,4 @@
-import mysql from 'mysql2/promise';
-import { dbConfig } from './dbConfig.js';
-
-const updateItem = async (id, name, email) => {
-  const connection = await mysql.createConnection(dbConfig);
+const updateItem = async (connection, id, name, email) => {
   await connection.query('UPDATE users SET name = ?, email = ? WHERE id = ?', [name, email, id]);
   return {
     statusCode: 201,
